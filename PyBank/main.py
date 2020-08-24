@@ -9,6 +9,7 @@ profit = []
 
 with open("budget_data.csv", "r") as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ",")
+    header = next(csvreader)
     
     for row in csvreader:
         months.append(row[0])
@@ -32,13 +33,13 @@ print("Total profits: " + str(profit))
 print("Average change: " + str(average_change))
 print("Greatest Increase in Profits: " + str(greatest_profit_increase_index))
 print("Greatest Decrease in Profits: " + str(greatest_profit_decrease_index))
-text_export = os.path.join(`financial_analysis.txt`)
+text_export = os.path.join(`budget_data.csv`)
 
 with open("Bank_Analysis.txt", "w") as txt_file:
     csv_writer = csv.writer(txt_file)
 
-    #csv_writer.writerow(["Financial Analysis"])
-   # csv_writer.writerow(["---------------------------"])
+csv_writer.writerow("Financial Analysis")
+csv_writer.writerow("---------------------------")
    # csv_writer.writerow("Total months: {len(months)-1:,])
    # csv_writer.writerow([f"Total profits: ${total_profit:,}"])
     #csv_writer.writerow([f"Average Change: ${average_change:,}"])
