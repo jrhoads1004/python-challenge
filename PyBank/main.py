@@ -1,14 +1,14 @@
 import os 
 import csv
 
-PyBank = os.path.join("Resources", "budget_data.csv")
+csvpath = os.path.join("Resources/budget_data.csv")
 
 change = []
 months = []
 profit = []
 
-with open(PyBank, "r") as csvfile:
-    csvreader = csv.reader(csvfile, delimiter = ",")
+with open(csvpath, "r") as csvfile:
+    csvreader = csv.reader(csvfile, delimiter= ",")
     header = next(csvreader)
     
     for row in csvreader:
@@ -16,7 +16,7 @@ with open(PyBank, "r") as csvfile:
         profit.append(row[1])
        
     total_months = len(months)
-    total_profit = str(profit)
+    total_profit = len(profit)
 
     for i in range(1, len(profit)):
         change.append((int(profit[i]) - int(profit[i-1])))
@@ -34,17 +34,18 @@ print("Average change: $" + str(average_change))
 print("Greatest Increase in Profits: $" + str(greatest_profit_increase_index))
 print("Greatest Decrease in Profits: $" + str(greatest_profit_decrease_index))
 
+output_file = os.path.join("Resources/Bank_Analysis.txt")
 
-#with open("Bank_Analysis.txt", "w") as txt_file:
-    #csv_writer = csv.writer(txt_file)
+with open(output_file, "w") as txt_file:
+    csv_writer = csv.writer(txt_file)
 
-#csv_writer.writerow(["Financial Analysis"])
-#csv_writer.writerow(["---------------------------"])
-#csv_writer.writerow("Total months: " + str(total_months))
-#csv_writer.writerow("Total profits: " + str(profit))
-#csv_writer.writerow("Average change: " + str(average_change))
-#csv_writer.writerow("Greatest Increase in Profits: " + str(greatest_profit_increase_index))
-#csv_writer.writerow("Greatest Decrease in Profits: " + str(greatest_profit_decrease_index))
+csv_writer.writerow("Financial Analysis")
+csv_writer.writerow("---------------------------")
+csv_writer.writerow("Total months: " + str(total_months))
+csv_writer.writerow("Total profits: " + str(profit))
+csv_writer.writerow("Average change: " + str(average_change))
+csv_writer.writerow("Greatest Increase in Profits: " + str(greatest_profit_increase_index))
+csv_writer.writerow("Greatest Decrease in Profits: " + str(greatest_profit_decrease_index))
 
 
 
